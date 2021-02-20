@@ -1,4 +1,4 @@
 #import <Flutter/Flutter.h>
 
-@interface AdvertisingIdentifierPlugin : NSObject<FlutterPlugin>
+@interface AdvertisingIdentifierPlugin : NSObject <FlutterPlugin>
 @end

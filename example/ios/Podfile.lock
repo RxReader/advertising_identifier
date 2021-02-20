@@ -1,0 +1,25 @@
+PODS:
+  - advertising_identifier (0.0.1):
+    - advertising_identifier/vendor (= 0.0.1)
+    - Flutter
+  - advertising_identifier/vendor (0.0.1):
+    - Flutter
+  - Flutter (1.0.0)
+
+DEPENDENCIES:
+  - advertising_identifier (from `.symlinks/plugins/advertising_identifier/ios`)
+  - Flutter (from `Flutter`)
+
+EXTERNAL SOURCES:
+  advertising_identifier:
+    :path: ".symlinks/plugins/advertising_identifier/ios"
+  Flutter:
+    :path: Flutter
+
+SPEC CHECKSUMS:
+  advertising_identifier: e008940ccaf503f773b5dcc7a736d45284545340
+  Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
+
+PODFILE CHECKSUM: 8e679eca47255a8ca8067c4c67aab20e64cb974d
+
+COCOAPODS: 1.10.0
