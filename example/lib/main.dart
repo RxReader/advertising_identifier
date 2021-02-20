@@ -27,7 +27,8 @@ class _MyAppState extends State<MyApp> {
               title: const Text('getAdvertisingIdInfo'),
               onTap: () async {
                 try {
-                  AdvertisingIdInfo info = await AdvertisingIdManager.getAdvertisingIdInfo();
+                  AdvertisingIdInfo info =
+                      await AdvertisingIdManager.getAdvertisingIdInfo();
                   print(json.encode(info));
                 } on PlatformException catch (e) {
                   print(e);

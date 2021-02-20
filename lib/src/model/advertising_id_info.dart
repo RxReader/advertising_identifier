@@ -34,7 +34,10 @@ class AdvertisingIdInfo {
   final bool isLimitAdTrackingEnabled;
 
   /// authorization status by users. (mainly for iOS14)
-  @JsonKey(defaultValue: AdTrackingAuthorizationStatus.notDetermined, unknownEnumValue: AdTrackingAuthorizationStatus.notDetermined)
+  @JsonKey(
+    defaultValue: AdTrackingAuthorizationStatus.notDetermined,
+    unknownEnumValue: AdTrackingAuthorizationStatus.notDetermined,
+  )
   final AdTrackingAuthorizationStatus authorizationStatus;
 
   Map<String, dynamic> toJson() => _$AdvertisingIdInfoToJson(this);
