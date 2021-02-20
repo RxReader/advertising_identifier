@@ -1,14 +1,4 @@
-import 'dart:async';
+library advertising_identifier;
 
-import 'package:flutter/services.dart';
-
-class AdvertisingIdentifier {
-  const AdvertisingIdentifier._();
-
-  static const MethodChannel _channel = MethodChannel('v7lin.github.io/advertising_identifier');
-
-  static Future<String> get platformVersion async {
-    final String version = await _channel.invokeMethod('getPlatformVersion');
-    return version;
-  }
-}
+export 'src/advertising_id_manager.dart';
+export 'src/model/advertising_id_info.dart';

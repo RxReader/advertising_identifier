@@ -3,6 +3,7 @@ package io.github.v7lin.advertising_identifier;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
+import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
 
@@ -89,7 +90,11 @@ public class AdvertisingIdentifierPlugin implements FlutterPlugin, MethodCallHan
                             mainHandler.post(new Runnable() {
                                 @Override
                                 public void run() {
-                                    result.error("FAILED", e.getMessage(), null);
+                                    String errorMessage = e.getMessage();
+                                    if (TextUtils.isEmpty(errorMessage)) {
+                                        errorMessage = e.getClass().getSimpleName();
+                                    }
+                                    result.error("FAILED", errorMessage, null);
                                 }
                             });
                         }
