@@ -4,7 +4,7 @@
 #
 Pod::Spec.new do |s|
   s.name             = 'advertising_identifier'
-  s.version          = '0.0.1'
+  s.version          = '0.1.0'
   s.summary          = 'Flutter plugin for Advertising Identifier.'
   s.description      = <<-DESC
 Flutter plugin for Advertising Identifier.
