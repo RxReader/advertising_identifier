@@ -10,8 +10,8 @@ class AdvertisingIdManager {
       MethodChannel('v7lin.github.io/advertising_identifier');
 
   static Future<AdvertisingIdInfo> getAdvertisingIdInfo() async {
-    final Map<String, dynamic> resp =
+    final Map<String, dynamic>? resp =
         await _channel.invokeMapMethod<String, dynamic>('getAdvertisingIdInfo');
-    return AdvertisingIdInfo.fromJson(resp);
+    return AdvertisingIdInfo.fromJson(resp!);
   }
 }

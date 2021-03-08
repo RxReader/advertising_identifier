@@ -56,7 +56,7 @@ public class AdvertisingIdentifierPlugin implements FlutterPlugin, MethodCallHan
 
     @Override
     public void onMethodCall(@NonNull MethodCall call, @NonNull final Result result) {
-        if (call.method.equals("getAdvertisingIdInfo")) {
+        if ("getAdvertisingIdInfo".equals(call.method)) {
             final Context context = applicationContext;
             new Thread(new Runnable() {
                 @Override
