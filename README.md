@@ -4,7 +4,7 @@ Flutter plugin for Advertising Identifier.
 
 ```dart
 try {
-  AdvertisingIdInfo info =
+  final AdvertisingIdInfo info =
       await AdvertisingIdManager.getAdvertisingIdInfo();
   print(json.encode(info));
 } on PlatformException catch (e) {
