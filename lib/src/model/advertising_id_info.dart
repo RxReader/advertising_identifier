@@ -20,15 +20,15 @@ enum AdTrackingAuthorizationStatus {
 class AdvertisingIdInfo {
   const AdvertisingIdInfo({
     this.id,
-    this.isLimitAdTrackingEnabled,
-    this.authorizationStatus,
+    required this.isLimitAdTrackingEnabled,
+    required this.authorizationStatus,
   });
 
   factory AdvertisingIdInfo.fromJson(Map<String, dynamic> json) =>
       _$AdvertisingIdInfoFromJson(json);
 
   /// advertising id (IDFA for iOS, GAID for Android)
-  final String id;
+  final String? id;
 
   /// if user has limited Ad tracking or not.
   final bool isLimitAdTrackingEnabled;
