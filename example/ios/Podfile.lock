@@ -1,8 +1,8 @@
 PODS:
-  - advertising_identifier (0.0.1):
-    - advertising_identifier/vendor (= 0.0.1)
+  - advertising_identifier (0.0.2):
+    - advertising_identifier/vendor (= 0.0.2)
     - Flutter
-  - advertising_identifier/vendor (0.0.1):
+  - advertising_identifier/vendor (0.0.2):
     - Flutter
   - Flutter (1.0.0)
 
@@ -17,9 +17,9 @@ EXTERNAL SOURCES:
     :path: Flutter
 
 SPEC CHECKSUMS:
-  advertising_identifier: e008940ccaf503f773b5dcc7a736d45284545340
+  advertising_identifier: b1272c126af7419b9011f9222f6b22c57c81d2da
   Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
 
 PODFILE CHECKSUM: 8e679eca47255a8ca8067c4c67aab20e64cb974d
 
-COCOAPODS: 1.10.0
+COCOAPODS: 1.10.1
