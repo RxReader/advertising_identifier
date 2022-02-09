@@ -1,3 +1,7 @@
+## 0.1.2
+
+* iOS weak_frameworks
+
 ## 0.1.1
 
 * iOS fix
