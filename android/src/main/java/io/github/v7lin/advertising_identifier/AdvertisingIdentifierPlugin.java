@@ -85,7 +85,7 @@ public class AdvertisingIdentifierPlugin implements FlutterPlugin, MethodCallHan
                                 });
                             }
                         }
-                    } catch (final IOException | GooglePlayServicesNotAvailableException | GooglePlayServicesRepairableException e) {
+                    } catch (final Throwable e) {
                         if (mainHandler != null) {
                             mainHandler.post(new Runnable() {
                                 @Override

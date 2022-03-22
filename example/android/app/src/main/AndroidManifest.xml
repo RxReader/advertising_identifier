@@ -2,6 +2,7 @@
     package="io.github.v7lin.advertising_identifier_example">
     <application
         android:label="advertising_identifier_example"
+        android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
