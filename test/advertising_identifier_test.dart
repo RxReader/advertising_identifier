@@ -1,19 +1,37 @@
-import 'package:flutter/services.dart';
+import 'package:advertising_identifier/src/advertising_identifier.dart';
+import 'package:advertising_identifier/src/advertising_identifier_method_channel.dart';
+import 'package:advertising_identifier/src/advertising_identifier_platform_interface.dart';
+import 'package:advertising_identifier/src/model/advertising_id_info.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:plugin_platform_interface/plugin_platform_interface.dart';
+
+class MockAdvertisingIdentifierPlatform
+    with MockPlatformInterfaceMixin
+    implements AdvertisingIdentifierPlatform {
+  @override
+  Future<AdvertisingIdInfo> getAdvertisingIdInfo() {
+    return Future<AdvertisingIdInfo>.value(AdvertisingIdInfo(
+      isLimitAdTrackingEnabled: true,
+      authorizationStatus: AdTrackingAuthorizationStatus.denied,
+    ));
+  }
+}
 
 void main() {
-  const MethodChannel channel =
-      MethodChannel('v7lin.github.io/advertising_identifier');
+  final AdvertisingIdentifierPlatform initialPlatform =
+      AdvertisingIdentifierPlatform.instance;
 
-  TestWidgetsFlutterBinding.ensureInitialized();
-
-  setUp(() {
-    channel.setMockMethodCallHandler((MethodCall methodCall) async {});
+  test('$MethodChannelAdvertisingIdentifier is the default instance', () {
+    expect(initialPlatform, isInstanceOf<MethodChannelAdvertisingIdentifier>());
   });
 
-  tearDown(() {
-    channel.setMockMethodCallHandler(null);
-  });
+  test('getPlatformVersion', () async {
+    final MockAdvertisingIdentifierPlatform fakePlatform =
+        MockAdvertisingIdentifierPlatform();
+    AdvertisingIdentifierPlatform.instance = fakePlatform;
 
-  test('smoke test', () async {});
+    final AdvertisingIdInfo info =
+        await AdvertisingIdentifier.instance.getAdvertisingIdInfo();
+    expect(info.isLimitAdTrackingEnabled, true);
+  });
 }

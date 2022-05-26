@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:advertising_identifier/advertising_identifier.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -9,8 +10,12 @@ void main() {
 }
 
 class MyApp extends StatefulWidget {
+  const MyApp({
+    super.key,
+  });
+
   @override
-  _MyAppState createState() => _MyAppState();
+  State<StatefulWidget> createState() => _MyAppState();
 }
 
 class _MyAppState extends State<MyApp> {
@@ -24,14 +29,19 @@ class _MyAppState extends State<MyApp> {
         body: ListView(
           children: <Widget>[
             ListTile(
-              title: const Text('getAdvertisingIdInfo'),
+              title: Text('getAdvertisingIdInfo'),
               onTap: () async {
                 try {
-                  final AdvertisingIdInfo info =
-                      await AdvertisingIdManager.getAdvertisingIdInfo();
-                  print(json.encode(info));
+                  final AdvertisingIdInfo info = await AdvertisingIdentifier
+                      .instance
+                      .getAdvertisingIdInfo();
+                  if (kDebugMode) {
+                    print(json.encode(info));
+                  }
                 } on PlatformException catch (e) {
-                  print(e);
+                  if (kDebugMode) {
+                    print(e);
+                  }
                 }
               },
             ),

@@ -8,12 +8,8 @@ import android.text.TextUtils;
 import androidx.annotation.NonNull;
 
 import com.google.android.gms.ads.identifier.AdvertisingIdClient;
-import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
-import com.google.android.gms.common.GooglePlayServicesRepairableException;
 
-import java.io.IOException;
 import java.util.HashMap;
-import java.util.Map;
 
 import io.flutter.embedding.engine.plugins.FlutterPlugin;
 import io.flutter.plugin.common.MethodCall;
@@ -55,12 +51,13 @@ public class AdvertisingIdentifierPlugin implements FlutterPlugin, MethodCallHan
     // --- MethodCallHandler
 
     @Override
-    public void onMethodCall(@NonNull MethodCall call, @NonNull final Result result) {
+    public void onMethodCall(@NonNull MethodCall call, @NonNull Result result) {
         if (call.method.equals("getAdvertisingIdInfo")) {
             final Context context = applicationContext;
-            new Thread(new Runnable() {
+            new Thread("advertising_identifier") {
                 @Override
                 public void run() {
+                    super.run();
                     try {
                         final AdvertisingIdClient.Info advertisingIdInfo = AdvertisingIdClient.getAdvertisingIdInfo(context);
                         if (advertisingIdInfo != null) {
@@ -68,10 +65,12 @@ public class AdvertisingIdentifierPlugin implements FlutterPlugin, MethodCallHan
                                 mainHandler.post(new Runnable() {
                                     @Override
                                     public void run() {
-                                        Map<String, Object> map = new HashMap<>();
-                                        map.put("id", advertisingIdInfo.getId());
-                                        map.put("is_limit_ad_tracking_enabled", advertisingIdInfo.isLimitAdTrackingEnabled());
-                                        result.success(map);
+                                        result.success(new HashMap<String, Object>() {
+                                            {
+                                                put("id", advertisingIdInfo.getId());
+                                                put("is_limit_ad_tracking_enabled", advertisingIdInfo.isLimitAdTrackingEnabled());
+                                            }
+                                        });
                                     }
                                 });
                             }
@@ -85,14 +84,14 @@ public class AdvertisingIdentifierPlugin implements FlutterPlugin, MethodCallHan
                                 });
                             }
                         }
-                    } catch (final Throwable e) {
+                    } catch (Throwable tr) {
                         if (mainHandler != null) {
                             mainHandler.post(new Runnable() {
                                 @Override
                                 public void run() {
-                                    String errorMessage = e.getMessage();
+                                    String errorMessage = tr.getMessage();
                                     if (TextUtils.isEmpty(errorMessage)) {
-                                        errorMessage = e.getClass().getSimpleName();
+                                        errorMessage = tr.getClass().getSimpleName();
                                     }
                                     result.error("FAILED", errorMessage, null);
                                 }
@@ -100,7 +99,7 @@ public class AdvertisingIdentifierPlugin implements FlutterPlugin, MethodCallHan
                         }
                     }
                 }
-            }, "advertising_identifier").start();
+            }.start();
         } else {
             result.notImplemented();
         }
