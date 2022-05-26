@@ -25,7 +25,7 @@ void main() {
     expect(initialPlatform, isInstanceOf<MethodChannelAdvertisingIdentifier>());
   });
 
-  test('getPlatformVersion', () async {
+  test('getAdvertisingIdInfo', () async {
     final MockAdvertisingIdentifierPlatform fakePlatform =
         MockAdvertisingIdentifierPlatform();
     AdvertisingIdentifierPlatform.instance = fakePlatform;
